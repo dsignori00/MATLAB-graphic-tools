@@ -183,8 +183,8 @@ rect_zoom = annotation('rectangle', rect_pos, 'EdgeColor', color, 'LineWidth', l
 % Draw the child axis
 child_axis = axes('position', child_axis_pos, 'Selected', cursor_selected, 'Layer', 'top', 'Box', 'on');
 
-% Copy all graphic element of the parent axis to the child
-graphic_elements = copy(parent_axis.Children);
+% Copy all graphic elements, including objects hidden from handle discovery.
+graphic_elements = allchild(parent_axis);
 for i = length(graphic_elements):-1:1
    copyobj(graphic_elements(i), child_axis)
 end
